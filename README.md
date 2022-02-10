@@ -1,2 +1,2 @@
-# front_adminstrativo
-front para el personal administrativo
+# Tecnomark
+Sistema de venta de computadoras
