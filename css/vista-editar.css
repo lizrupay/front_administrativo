@@ -1,0 +1,58 @@
+/* Secion interna AGREGAR CLIENTES */
+.editar__titulo{
+    font-size: 2rem;
+    margin: 0;
+    padding-bottom: 1rem;
+  
+  }
+  @media (min-width: 600px) {
+    .formulario-editar .formulario-editar-grid{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1rem;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+  }
+  
+
+
+  .formulario-editar__input {
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: 0.1rem solid var(--color-gris);
+    border-radius: 0.5rem;
+    width: 100%;
+    background-color: var(--color-gris-claro);
+    height: 30px;
+  }
+
+  .formulario-editar__combomultiple {
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: 0.1rem solid var(--color-gris);
+    border-radius: 0.5rem;
+    width: 100%;
+    background-color: var(--color-gris-claro);
+    height: 60px;
+  }
+
+
+  .formulario-editar label span{
+    display: block;
+  }
+
+  .boton-editar{
+    height: 30px;
+  }
+  input{
+    font-family: Montserrat, Helvetica, Arial, serif;
+  }
+
+  .formulario-editar-boton{
+    text-align: right;
+  }
+
+
+
+    

@@ -1,0 +1,94 @@
+/*---------------- Header----------------------- */
+
+.header {
+    background-color: var(--color-blanco);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    width: auto;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+  @media (min-width: 1024px) {
+    .header {
+      width: calc(100% - 4.4rem - 74px);
+      left: auto;
+      right: 0;
+      top: auto;
+      margin: 1.3rem 2rem 0;
+    }
+  }
+  .header .navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+  }
+  
+  .header .navegacion ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+  .header .navegacion__derecha ul li {
+    margin-left: 1rem;
+  }
+  .header .navegacion__izquierda ul li {
+    margin-right: 1rem;
+  }
+  .header .navegacion__izquierda--item {
+    text-decoration: none;
+  }
+  .header .navegacion__derecha--item {
+    text-decoration: none;
+  }
+  .header .navegacion__derecha--item-usuario {
+    text-decoration: none;
+  }
+  
+  /* Iconos del menu */
+  .header .navegacion__izquierda--item i {
+    font-size: 2rem;
+    color: #6e6b7b;
+  }
+  .header .navegacion__derecha--item i {
+    text-decoration: none;
+    color: #6e6b7b;
+  }
+  .header .navegacion__izquierda--menu {
+    cursor: pointer;
+  }
+  @media (min-width: 1024px) {
+    .header .navegacion__izquierda--menu {
+      display: none;
+    }
+  }
+  
+  /* Usuario menu */
+  .usuario-navegacion {
+    display: flex;
+    align-items: center;
+  }
+  .usuario-navegacion__nombre {
+    margin-right: 1.5rem;
+  }
+  .usuario-navegacion__avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .usuario-navegacion__nombre--usuario {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-azul-oscuro);
+    margin: 0;
+    line-height: 1;
+  }
+  .usuario-navegacion__nombre--rol {
+    line-height: 1;
+    color: var(--color-azul-oscuro);
+  }

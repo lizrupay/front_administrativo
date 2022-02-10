@@ -1,0 +1,138 @@
+/* 
+Developers: Brian Gamboa
+*/
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /** Reset para REMS - 62.5% = 10px de 16px **/
+    scroll-behavior: smooth;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    color: var(--color-azul-oscuro);
+    position: relative;
+    font-family: Montserrat, Helvetica, Arial, serif;
+    background-color: var(--color-fondo);
+  }
+  /* Variables */
+  :root {
+    --color-rojo: #ff0000;
+    --color-verde: #00af46;
+    --color-amarillo: #ffc000;
+    --color-azul: #0779ea;
+    --color-azul-oscuro: #00134a;
+    --color-blanco: #ffffff;
+    --color-gris: #e1e3e4;
+    --color-gris-claro: #f3f5f6;
+    --color-fondo: #f0f2f5;
+  
+    --box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+    --border-radius: 0.5rem;
+  }
+  /* Globales */
+  html h1 {
+    font-size: 3.4rem;
+  }
+  html h2 {
+    font-size: 3rem;
+  }
+  html h3 {
+    font-size: 2.4rem;
+  }
+  html h4 {
+    font-size: 1.4rem;
+  }
+  p {
+    font-size: 1.4rem;
+  }
+  img {
+    max-width: 100%;
+  }
+  
+  i {
+    font-size: 2rem;
+    color: #6e6b7b;
+  }
+  /* Utilidades */
+  .boton {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.65rem 1.6rem;
+    border-radius: 0.5rem;
+    background-color: #7367f0;
+    border: none;
+    cursor: pointer;
+    color: var(--color-blanco);
+    font-size: 1.4rem;
+    line-height: 1;
+    text-align: center;
+    font-family: Montserrat, Helvetica, Arial, serif;
+  }
+  .boton-retornar{
+    background-color: #d6d6d7;
+    color: #00134a;
+    margin-right: 10px;
+  }
+  
+  /* Estilos del Scroll */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #fbfbfe;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #c8cdd0;
+  }
+  ::-webkit-scrollbar-thumb:hover 
+    {
+    background: #a0a7ac;
+  
+  }
+
+
+  /* estilo de mensaje de alerta y exito */
+  .mensaje-alerta{
+    margin-top: 1rem;
+    display: block;
+    background-color: #f04951;
+    color: #fff;
+    text-align: left;
+    border-radius: 0.5rem;
+    line-height: 1;
+    font-size: 1.4rem;
+    padding: 0.65rem 1.6rem;
+  }
+  .mensaje-alerta i{
+    font-size: 1.4rem;
+    color: #fff;
+    margin-right: 5px;
+  }
+
+  .mensaje-exitoso{
+    margin-top: 1rem;
+    display: block;
+    background-color: #20b51b;
+    color: #fff;
+    text-align: left;
+    border-radius: 0.5rem;
+    line-height: 1;
+    font-size: 1.4rem;
+    padding: 0.65rem 1.6rem;
+  }
+  .mensaje-exitoso i{
+    font-size: 1.4rem;
+    color: #fff;
+    margin-right: 5px;
+  }
+  
+
+    

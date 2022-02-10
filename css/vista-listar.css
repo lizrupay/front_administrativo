@@ -1,0 +1,149 @@
+.agregar__titulo{
+  font-size: 2rem;
+  margin: 0;
+  padding-bottom: 1rem;
+
+}
+@media (min-width: 600px) {
+  .formulario-agregar form{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem
+  }
+}
+
+/* Buscador de clientes */
+.listar__buscador{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  align-items: stretch;
+}
+@media (min-width: 765px){
+  .listar__buscador{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.listar__buscador form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.listar__buscador .listar__buscador--nombre {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 0.1rem solid var(--color-gris);
+  border-radius: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: Montserrat, Helvetica, Arial, serif;
+}
+.listar__buscador--select {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 0.1rem solid var(--color-gris);
+  border-radius: 0.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-family: Montserrat, Helvetica, Arial, serif;
+}
+.listar__buscador .boton {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+@media (min-width: 765px) {
+  .listar__buscador form {
+    display: unset;
+    width: 100%;
+  }
+  .listar__buscador .listar__buscador--nombre {
+    width: 220px;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  .listar__buscador--select {
+    width: 150px;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  .listar__buscador .boton {
+    width: 150px;
+    margin-bottom: 0;
+  }
+}
+.boton-crear.boton{
+  color: #fff;
+  line-break: strict;
+}
+.boton-crear i{
+  color: #fff;
+  font-size: 12px;
+  margin-right: 0.5rem;
+}
+
+/* FIn de buscador de clientes */
+
+/* tabla del cliente */
+.listar__tabla {
+  overflow: auto;
+  padding: 1.5rem 0;
+  width: 100%;
+}
+.listar__tabla table {
+  width: inherit;
+  border-collapse: collapse;
+}
+.listar__tabla table tr {
+  border: 0.1rem solid var(--color-gris);
+}
+.listar__tabla table th {
+  border: 0.1rem solid var(--color-gris);
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 0.6rem 1.5rem;
+}
+.listar__tabla table td {
+  border: 0.1rem solid var(--color-gris);
+  padding: 0.6rem 1.5rem;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+.listar__tabla--id{
+  width: 10%;
+}
+.listar__tabla--fecha{
+  width: 20%;
+}
+.listar__tabla--nombre{
+  width: 50%;
+}
+.listar__tabla--acciones{
+  width: 20%;
+}
+/* Acciones */
+.boton-aciones{
+  display: flex;
+  justify-content: space-around;
+  
+}
+.boton-aciones a{
+  text-decoration: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  color: var(--color-blanco);
+}
+.boton-aciones__editar{
+  background-color: #7367f0;
+  margin-right: 0.5rem;
+}
+.boton-aciones__eliminar{
+  background-color: #f04951;
+}
+
+/* Fin tabla listar */

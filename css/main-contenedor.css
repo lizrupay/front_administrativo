@@ -1,0 +1,22 @@
+/*----------------------------main CONTENEDOR-------------------- */
+
+.main {
+    padding: 9rem 1rem 0 1rem;
+  }
+  @media (min-width: 1024px) {
+    .main {
+      padding: 9rem 2rem 0 2rem;
+      margin-left: 80px;
+    }
+  }
+  .main__contenido {
+    background-color: var(--color-blanco);
+    box-shadow: var(--box-shadow);
+    height: auto;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    font-size: 1.2rem;
+  }
+  
+
+  

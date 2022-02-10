@@ -1,0 +1,125 @@
+/* Secion interna AGREGAR CLIENTES */
+.generar-comprobante__titulo {
+    font-size: 2rem;
+    margin: 0;
+    padding-bottom: 1rem;
+  
+  }
+  .top-generar-comprobante {
+    display: grid;
+    grid-gap: 1rem;
+  
+  }
+  
+  .contenedor-detalle-generar-comprobante {
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+    border-top: 0.1rem solid var(--color-gris);
+  }
+  .top-detalle-generar-comprobante {
+    display: grid;
+    grid-gap: 1rem;
+    
+  }
+  
+  .contenedor-detalle-generar-comprobante h4 {
+    margin: 0;
+  }
+  
+  @media (min-width: 600px) {
+    .top-generar-comprobante {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+      align-items: flex-end;
+    }
+  
+    .top-detalle-generar-comprobante {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem;
+      align-items: flex-end;
+    }
+  }
+  
+  .formulario-generar-comprobante__input {
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: 0.1rem solid var(--color-gris);
+    border-radius: 0.5rem;
+    width: 100%;
+    background-color: var(--color-gris-claro);
+    height: 30px;
+  }
+  
+  .formulario-generar-comprobante__select {
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: 0.1rem solid var(--color-gris);
+    border-radius: 0.5rem;
+    width: 100%;
+    /* margin-bottom: 1rem; */
+    font-family: Montserrat, Helvetica, Arial, serif;
+  }
+  
+  .formulario-generar-comprobante label span {
+    display: block;
+  }
+  .botones-generar-comprobante{
+    text-align: right;
+  }
+  
+  
+  input {
+    font-family: Montserrat, Helvetica, Arial, serif;
+  }
+  
+  /*Tabla  */
+  
+  .generar-comprobante__tabla {
+    overflow: auto;
+    padding: 1.5rem 0;
+    width: 100%;
+  }
+  
+  .generar-comprobante table {
+    width: inherit;
+    border-collapse: collapse;
+  }
+  .gc__tabla--encabezado{
+    background-color: #f3f5f6;
+  }
+  
+  .generar-comprobante__tabla table tr {
+    border: 0.1rem solid var(--color-gris);
+  }
+  
+  .generar-comprobante__tabla table th {
+    border: 0.1rem solid var(--color-gris);
+    line-height: 1.2;
+    white-space: nowrap;
+    padding: 0.6rem 1.5rem;
+  }
+  
+  .generar-comprobante__tabla table td {
+    border: 0.1rem solid var(--color-gris);
+    padding: 0.6rem 1.5rem;
+    line-height: 1.45;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .gc__tabla--id{
+    width: 15%;
+  }
+  .gc__tabla--producto{
+    width: 40%;
+  }
+  .gc__tabla--cantidad{
+    width: 15%;
+  }
+  .gc__tabla--precio{
+    width: 15%;
+  }
+  .gc__tabla--total{
+    width: 15%;
+  }
