@@ -1,0 +1,653 @@
+-- MySQL dump 10.13  Distrib 5.1.73, for redhat-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: tecnomarket
+-- ------------------------------------------------------
+-- Server version	5.1.73
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `categorias`
+--
+
+DROP TABLE IF EXISTS `categorias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categorias` (
+  `categoria_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`categoria_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categorias`
+--
+
+LOCK TABLES `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
+INSERT INTO `categorias` VALUES (1,'mi amor','1',''),(2,'drones','1',NULL),(4,'usb',NULL,NULL),(6,'Samsung','1',NULL),(7,'chocolate ...','1',NULL),(8,'bañitooooo','1',''),(9,'jose bustillos','1',''),(10,'ww','w',''),(11,'wewww','1','');
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clientes` (
+  `cliente_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `clave` varchar(255) DEFAULT NULL,
+  `correo` varchar(255) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `tipodocumento_id` int(11) DEFAULT NULL,
+  `num_doc` varchar(255) DEFAULT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`cliente_id`),
+  UNIQUE KEY `UK_rtyx66vbw29mp93louvs0ghs` (`usuario`),
+  KEY `FK68m3njle7gkvpvcdpudhap89c` (`tipodocumento_id`),
+  CONSTRAINT `FK68m3njle7gkvpvcdpudhap89c` FOREIGN KEY (`tipodocumento_id`) REFERENCES `tipodocumentos` (`tipodocumento_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+INSERT INTO `clientes` VALUES (2,'luana carolina','bustillos rupay','lrupay','12345','carolina@gmail.com','SJM',1,'89987890','940144020','1'),(6,'lucas','bravo rojas','admin','12345','lucas@gmail.com','lima',1,'98767656','987656545','1'),(9,'Jose','Bustillos','rupay','12345','jbustillos@gmail.com','SJM',1,'09876512','997520421','1'),(11,'martin alexander','obando mastacero','martin','12345','martin@gmail.com','lurin',1,'87676545','940144123','1');
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compras`
+--
+
+DROP TABLE IF EXISTS `compras`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `compras` (
+  `compra_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion_compra` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `fecha_compra` date DEFAULT NULL,
+  `igv_compra` double DEFAULT NULL,
+  `num_documento_compra` varchar(255) DEFAULT NULL,
+  `subtotal_compra` double DEFAULT NULL,
+  `total_compra` double DEFAULT NULL,
+  `proveedor_id` int(11) NOT NULL,
+  `tipocomprobante_id` int(11) NOT NULL,
+  PRIMARY KEY (`compra_id`),
+  KEY `FKabfd3b61ss0f7ebhao6evn5ec` (`proveedor_id`),
+  KEY `FK8kfeflurjontdbnxbmtxaul5t` (`tipocomprobante_id`),
+  CONSTRAINT `FK8kfeflurjontdbnxbmtxaul5t` FOREIGN KEY (`tipocomprobante_id`) REFERENCES `tipocomprobantes` (`tipocomprobante_id`),
+  CONSTRAINT `FKabfd3b61ss0f7ebhao6evn5ec` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores` (`proveedor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compras`
+--
+
+LOCK TABLES `compras` WRITE;
+/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comprasdetalles`
+--
+
+DROP TABLE IF EXISTS `comprasdetalles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comprasdetalles` (
+  `compradetalle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad_compradetalle` int(11) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `igv_compradetalle` double DEFAULT NULL,
+  `precio_compradetalle` double DEFAULT NULL,
+  `subtotal_dcompradetalle` double DEFAULT NULL,
+  `total_compradetalle` double DEFAULT NULL,
+  `compra_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  PRIMARY KEY (`compradetalle_id`),
+  KEY `FK3o4gn3wu25i7ni08b8n6k4pge` (`compra_id`),
+  KEY `FKjm79xe7soyfbcptd6lpamew0b` (`producto_id`),
+  CONSTRAINT `FK3o4gn3wu25i7ni08b8n6k4pge` FOREIGN KEY (`compra_id`) REFERENCES `compras` (`compra_id`),
+  CONSTRAINT `FKjm79xe7soyfbcptd6lpamew0b` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`producto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comprasdetalles`
+--
+
+LOCK TABLES `comprasdetalles` WRITE;
+/*!40000 ALTER TABLE `comprasdetalles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comprasdetalles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `departamentos`
+--
+
+DROP TABLE IF EXISTS `departamentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `departamentos` (
+  `departamento_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`departamento_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `departamentos`
+--
+
+LOCK TABLES `departamentos` WRITE;
+/*!40000 ALTER TABLE `departamentos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `departamentos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `distritos`
+--
+
+DROP TABLE IF EXISTS `distritos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `distritos` (
+  `distrito_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `provincia_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`distrito_id`),
+  KEY `FKaku36qpxq4q9qld0o340lxvgq` (`provincia_id`),
+  CONSTRAINT `FKaku36qpxq4q9qld0o340lxvgq` FOREIGN KEY (`provincia_id`) REFERENCES `provincias` (`provincia_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `distritos`
+--
+
+LOCK TABLES `distritos` WRITE;
+/*!40000 ALTER TABLE `distritos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `distritos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `historialprecios`
+--
+
+DROP TABLE IF EXISTS `historialprecios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `historialprecios` (
+  `historialprecio_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descuento` double DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `fecha_registro` date DEFAULT NULL,
+  `fecha_vigencia` date DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `producto_id` int(11) NOT NULL,
+  PRIMARY KEY (`historialprecio_id`),
+  KEY `FKca7tihi3g1qjlbsw4lda7utar` (`producto_id`),
+  CONSTRAINT `FKca7tihi3g1qjlbsw4lda7utar` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`producto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `historialprecios`
+--
+
+LOCK TABLES `historialprecios` WRITE;
+/*!40000 ALTER TABLE `historialprecios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `historialprecios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `marcas`
+--
+
+DROP TABLE IF EXISTS `marcas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `marcas` (
+  `marca_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`marca_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `marcas`
+--
+
+LOCK TABLES `marcas` WRITE;
+/*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
+INSERT INTO `marcas` VALUES (1,'computadoras','1',''),(2,'ph','1',''),(4,'xiaomi','1',NULL),(5,'Kiingston ','1',NULL);
+/*!40000 ALTER TABLE `marcas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `modalidadpagos`
+--
+
+DROP TABLE IF EXISTS `modalidadpagos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `modalidadpagos` (
+  `modalidadpago_id` int(11) NOT NULL AUTO_INCREMENT,
+  `comicion` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`modalidadpago_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `modalidadpagos`
+--
+
+LOCK TABLES `modalidadpagos` WRITE;
+/*!40000 ALTER TABLE `modalidadpagos` DISABLE KEYS */;
+INSERT INTO `modalidadpagos` VALUES (1,'1.5','Tarjeta Visa','1'),(2,'1,5','Tarjeta Master','1');
+/*!40000 ALTER TABLE `modalidadpagos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productos`
+--
+
+DROP TABLE IF EXISTS `productos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `productos` (
+  `producto_id` int(11) NOT NULL AUTO_INCREMENT,
+  `codigoqr` varchar(255) DEFAULT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `descuento` double DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `marca_id` int(11) NOT NULL,
+  `subcategoria_id` int(11) NOT NULL,
+  PRIMARY KEY (`producto_id`),
+  KEY `FK2k6lj04qqala7kgd526xduxgn` (`marca_id`),
+  KEY `FKlutwcid3o8b6ueh8a3u04vyjr` (`subcategoria_id`),
+  CONSTRAINT `FK2k6lj04qqala7kgd526xduxgn` FOREIGN KEY (`marca_id`) REFERENCES `marcas` (`marca_id`),
+  CONSTRAINT `FKlutwcid3o8b6ueh8a3u04vyjr` FOREIGN KEY (`subcategoria_id`) REFERENCES `subcategorias` (`subcategoria_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productos`
+--
+
+LOCK TABLES `productos` WRITE;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` VALUES (2,'56789878','CORE I5',10,'1',NULL,'computadora',1200,100,4,8),(3,'741000100','Lenovo Yoga Tablet 10.1 es un Mediatek MT8125 Cortex A7 y con una velocidad de reloj de 1,2 GHz',10,'1',NULL,'tablet lenovo',300,30,2,2),(4,'741000100','Lenovo Yoga Tablet 10.1 es un Mediatek MT8125 Cortex A7 y con una velocidad de reloj de 1,2 GHz',10,'1',NULL,'tablet lenovo',300,20,1,3),(6,'4567453','Lenovo Tablet 10.1  Cortex A7 velocidad de reloj de 1,2 GHz',10,'2',NULL,'celular lenovo',1000,100,1,1),(7,'98567456','Teléfono móvil Xiaomi Redmi 10 4GB 64GB 50MP 4G 21061119AG - Blanco',5,'1',NULL,'celular xiaomi',699,100,4,2),(8,'83456567','TMemoria USB de 64Gb DT100G3 Kiingston 3.0',50,'1',NULL,'usb',90,0,4,8),(9,'56789878','CORE I5',10,'1',NULL,'PC',1200,100,4,8),(10,'56789878','CORE I5',10,'1',NULL,'celular',1200,100,4,8),(11,'56789878','CORE I7',30,'1',NULL,'pc',1200,100,4,8);
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `proveedores`
+--
+
+DROP TABLE IF EXISTS `proveedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `proveedores` (
+  `proveedor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_empresa` varchar(255) DEFAULT NULL,
+  `ruc` varchar(255) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `contacto` varchar(255) DEFAULT NULL,
+  `correo` varchar(255) DEFAULT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`proveedor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proveedores`
+--
+
+LOCK TABLES `proveedores` WRITE;
+/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `provincias`
+--
+
+DROP TABLE IF EXISTS `provincias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `provincias` (
+  `provincia_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `departamento_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`provincia_id`),
+  KEY `FKki8gpxckosk8k3kgobe3wjrtd` (`departamento_id`),
+  CONSTRAINT `FKki8gpxckosk8k3kgobe3wjrtd` FOREIGN KEY (`departamento_id`) REFERENCES `departamentos` (`departamento_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `provincias`
+--
+
+LOCK TABLES `provincias` WRITE;
+/*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
+/*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `esatdo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `roles`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'Administrador','1');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subcategorias`
+--
+
+DROP TABLE IF EXISTS `subcategorias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subcategorias` (
+  `subcategoria_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
+  `categoria_id` int(11) NOT NULL,
+  PRIMARY KEY (`subcategoria_id`),
+  KEY `FKiucm5ipf0wvec50s8j67r33rk` (`categoria_id`),
+  CONSTRAINT `FKiucm5ipf0wvec50s8j67r33rk` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`categoria_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subcategorias`
+--
+
+LOCK TABLES `subcategorias` WRITE;
+/*!40000 ALTER TABLE `subcategorias` DISABLE KEYS */;
+INSERT INTO `subcategorias` VALUES (1,'coputadoras y tablets','1',NULL,2),(2,'celulares','1','',1),(3,'telivisores..','1','',1),(8,'usb','1',NULL,4);
+/*!40000 ALTER TABLE `subcategorias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipocomprobantes`
+--
+
+DROP TABLE IF EXISTS `tipocomprobantes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipocomprobantes` (
+  `tipocomprobante_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`tipocomprobante_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipocomprobantes`
+--
+
+LOCK TABLES `tipocomprobantes` WRITE;
+/*!40000 ALTER TABLE `tipocomprobantes` DISABLE KEYS */;
+INSERT INTO `tipocomprobantes` VALUES (1,'boleta','1'),(2,'factura','1');
+/*!40000 ALTER TABLE `tipocomprobantes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipodocumentos`
+--
+
+DROP TABLE IF EXISTS `tipodocumentos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tipodocumentos` (
+  `tipodocumento_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`tipodocumento_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipodocumentos`
+--
+
+LOCK TABLES `tipodocumentos` WRITE;
+/*!40000 ALTER TABLE `tipodocumentos` DISABLE KEYS */;
+INSERT INTO `tipodocumentos` VALUES (1,'DNI','1'),(2,'Ruc','1'),(3,'pasaporte','1');
+/*!40000 ALTER TABLE `tipodocumentos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ubigeos`
+--
+
+DROP TABLE IF EXISTS `ubigeos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ubigeos` (
+  `ubigeo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ubigeo_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ubigeos`
+--
+
+LOCK TABLES `ubigeos` WRITE;
+/*!40000 ALTER TABLE `ubigeos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ubigeos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
+  `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombres` varchar(255) DEFAULT NULL,
+  `apellidos` varchar(255) DEFAULT NULL,
+  `usuario` varchar(255) NOT NULL,
+  `clave` varchar(255) DEFAULT NULL,
+  `telefono` varchar(255) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `correo` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`usuario_id`),
+  UNIQUE KEY `UK_3m5n1w5trapxlbo2s42ugwdmd` (`usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'Lizbeth','Rupay','lrupay','123456','940144020',NULL,NULL,'1');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios_roles`
+--
+
+DROP TABLE IF EXISTS `usuarios_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios_roles` (
+  `usuario_id` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL,
+  PRIMARY KEY (`usuario_id`,`id_role`),
+  KEY `FK33v8y5al18q1g8v661ewo6wla` (`id_role`),
+  CONSTRAINT `FKqcxu02bqipxpr7cjyj9dmhwec` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`),
+  CONSTRAINT `FK33v8y5al18q1g8v661ewo6wla` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios_roles`
+--
+
+LOCK TABLES `usuarios_roles` WRITE;
+/*!40000 ALTER TABLE `usuarios_roles` DISABLE KEYS */;
+INSERT INTO `usuarios_roles` VALUES (1,1);
+/*!40000 ALTER TABLE `usuarios_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ventadetalles`
+--
+
+DROP TABLE IF EXISTS `ventadetalles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ventadetalles` (
+  `venta_id` int(11) NOT NULL,
+  `ventadetalle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `producto_id` int(11) NOT NULL,
+  `precio_ventadetalle` double DEFAULT NULL,
+  `cantidad_ventadetalle` int(11) DEFAULT NULL,
+  `valor_ventadetalle` double DEFAULT NULL,
+  `descuento_ventadetalle` double DEFAULT NULL,
+  `subtotal_ventadetalle` double DEFAULT NULL,
+  `igv_ventadetalle` double DEFAULT NULL,
+  `total_ventadetalle` double DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ventadetalle_id`),
+  KEY `FK7fovprbtenjwxuoxrrl680sd9` (`producto_id`),
+  KEY `FKrcftpa85qja4moaeji48yfdpo` (`venta_id`),
+  CONSTRAINT `FK7fovprbtenjwxuoxrrl680sd9` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`producto_id`),
+  CONSTRAINT `FKrcftpa85qja4moaeji48yfdpo` FOREIGN KEY (`venta_id`) REFERENCES `ventas` (`venta_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ventadetalles`
+--
+
+LOCK TABLES `ventadetalles` WRITE;
+/*!40000 ALTER TABLE `ventadetalles` DISABLE KEYS */;
+INSERT INTO `ventadetalles` VALUES (1,1,2,3000,1,3000,300,2700,486,3186,'1'),(1,2,3,300,2,600,60,540,97.2,637.2,'1'),(2,3,2,3000,3,9000,900,8100,1458,9558,'1'),(2,4,3,300,1,300,30,270,48.6,318.6,'1'),(2,5,8,90,10,900,450,450,81,531,'1'),(2,6,6,1000,2,2000,200,1800,324,2124,'1'),(2,7,7,699,2,1398,69.9,1328.1,239.058,1567.158,'1'),(3,8,6,1000,5,5000,500,4500,810,5310,'1'),(3,9,2,3000,3,9000,900,8100,1458,9558,'1'),(4,10,6,1000,2,2000,200,1800,324,2124,'1'),(4,11,2,1200,3,3600,360,3240,583.2,3823.2,'1'),(5,12,4,300,2,600,60,540,97.2,637.2,'1'),(5,13,8,90,3,270,135,135,24.3,159.3,'1'),(6,14,4,300,2,600,60,540,97.2,637.2,'1'),(7,15,4,300,2,600,60,540,97.2,637.2,'1'),(8,16,4,300,20,6000,600,5400,972,6372,'1'),(9,17,4,300,20,6000,600,5400,972,6372,'1'),(10,18,4,300,10,3000,300,2700,486,3186,'1'),(10,19,8,90,10,900,450,450,81,531,'1');
+/*!40000 ALTER TABLE `ventadetalles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ventas`
+--
+
+DROP TABLE IF EXISTS `ventas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ventas` (
+  `venta_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipocomprobante_id` int(11) NOT NULL,
+  `fecha_venta` date DEFAULT NULL,
+  `cliente_id` int(11) NOT NULL,
+  `razonsocialcliente_venta` varchar(255) DEFAULT NULL,
+  `documentocliente_venta` varchar(255) DEFAULT NULL,
+  `direccioncliente_venta` varchar(255) DEFAULT NULL,
+  `direccionentrega_venta` varchar(255) DEFAULT NULL,
+  `telefonoentrega_venta` varchar(255) DEFAULT NULL,
+  `tipoentrega_venta` varchar(255) DEFAULT NULL,
+  `modalidadpago_id` int(11) NOT NULL,
+  `precio_venta` double DEFAULT NULL,
+  `descuento_venta` double DEFAULT NULL,
+  `subtotal_venta` double DEFAULT NULL,
+  `igv_venta` double DEFAULT NULL,
+  `total_venta` double DEFAULT NULL,
+  `estado_venta` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`venta_id`),
+  KEY `FK4dgjhccl2uuo8swmxlxb4ipb5` (`cliente_id`),
+  KEY `FKkxw01dxwgj89mhx2nb3tsoh7` (`modalidadpago_id`),
+  KEY `FKjvq7yut65sksk0hkg5ivwskt0` (`tipocomprobante_id`),
+  CONSTRAINT `FK4dgjhccl2uuo8swmxlxb4ipb5` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`cliente_id`),
+  CONSTRAINT `FKjvq7yut65sksk0hkg5ivwskt0` FOREIGN KEY (`tipocomprobante_id`) REFERENCES `tipocomprobantes` (`tipocomprobante_id`),
+  CONSTRAINT `FKkxw01dxwgj89mhx2nb3tsoh7` FOREIGN KEY (`modalidadpago_id`) REFERENCES `modalidadpagos` (`modalidadpago_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ventas`
+--
+
+LOCK TABLES `ventas` WRITE;
+/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
+INSERT INTO `ventas` VALUES (1,1,NULL,6,'spa liz','10470118474','su casa','su casa','940144020','delivery',1,3600,360,3240,583.2,3823.2,NULL),(2,1,'2022-01-12',2,'Actel peru','20511813876','su casa','su casa','99999999','delivery',1,13598,1649.9,11948.1,2150.658,14098.758,'1'),(3,1,'2022-01-13',9,'Actel poiiii','20511819999','su casa','su casa','940555520','delivery',1,14000,1400,12600,2268,14868,'1'),(4,1,'2022-01-13',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,5600,560,5040,907.2,5947.2,'1'),(5,1,'2022-01-15',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,870,195,675,121.5,796.5,'1'),(6,1,'2022-01-15',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,600,60,540,97.2,637.2,'1'),(7,1,'2022-01-15',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,600,60,540,97.2,637.2,'1'),(8,1,'2022-01-15',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,6000,600,5400,972,6372,'1'),(9,1,'2022-01-15',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,6000,600,5400,972,6372,'1'),(10,1,'2022-01-15',9,'Actel','47021840','su casa','su casa','940555520','delivery',1,3900,750,3150,567,3717,'1');
+/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-01-23 12:14:48
